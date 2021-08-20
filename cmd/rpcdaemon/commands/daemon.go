@@ -25,7 +25,7 @@ func APIList(ctx context.Context, db kv.RoDB, eth services.ApiBackend, txPool tx
 	web3Impl := NewWeb3APIImpl(eth)
 	dbImpl := NewDBAPIImpl()   /* deprecated */
 	shhImpl := NewSHHAPIImpl() /* deprecated */
-    heliosImpl = NewHeliosImpl(base, db)
+    heliosImpl := NewHeliosImpl(base, db)
 
 	for _, enabledAPI := range cfg.API {
 		switch enabledAPI {

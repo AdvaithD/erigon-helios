@@ -64,3 +64,22 @@ func(api *HeliosAPIImpl) GetInternalOperations(ctx context.Context, hash common.
     fmt.Println("Found txn: %x", txn)
 }
 
+func (api *HeliosAPIImpl) ScanSingleBlock(ctx context.Context, number rpc.BlockNumber) (map[string]interface{}, error) {
+    tx, err := api.db.BeginRo(ctx)
+    if err != nil {
+        return nil, err
+    }
+
+    defer tx.Rollback()
+
+    block, senders, err := api.getBlockAndSenders(number, tx)
+    if err != nil {
+        return nil, err
+    }
+    if block == nil {
+        return nil, nil
+    }
+
+    chainConfig, err := chainConfig(tx)
+}
+
