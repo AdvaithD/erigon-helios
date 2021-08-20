@@ -1,5 +1,6 @@
-# Erigon
+# Erigon Helios
 
+Erigon fork, to be used with the main [helios](https://github.com/taarushv/helios) binary.
 Erigon is an implementation of Ethereum (aka "Ethereum client"), on the efficiency frontier, written in Go.
 
 ![Build status](https://github.com/ledgerwatch/erigon/actions/workflows/ci.yml/badge.svg)
