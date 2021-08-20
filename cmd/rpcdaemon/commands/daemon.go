@@ -25,6 +25,7 @@ func APIList(ctx context.Context, db kv.RoDB, eth services.ApiBackend, txPool tx
 	web3Impl := NewWeb3APIImpl(eth)
 	dbImpl := NewDBAPIImpl()   /* deprecated */
 	shhImpl := NewSHHAPIImpl() /* deprecated */
+    heliosImpl = NewHeliosImpl(base, db)
 
 	for _, enabledAPI := range cfg.API {
 		switch enabledAPI {
@@ -91,6 +92,13 @@ func APIList(ctx context.Context, db kv.RoDB, eth services.ApiBackend, txPool tx
 				Service:   ErigonAPI(erigonImpl),
 				Version:   "1.0",
 			})
+        case "helios":
+            defaultAPIList = append(defaultAPIList, rpc.API{
+                Namespace: "helios",
+                Public: true,
+                Service: HeliosAPI(heliosImpl),
+                Version: "1.0",
+            }
 		}
 	}
 
